@@ -9,5 +9,8 @@
     "start-server": "node app.js"
   },
   "author": "Fabio da Silva",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
