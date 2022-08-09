@@ -1,1 +1,1 @@
-[{"title":"car"},{"title":"bike"},{"title":"item"},{"title":"motorcycle"},{"title":"car2"}]
+[{"title":"Car","imageUrl":"https://cdn.pixabay.com/photo/2016/05/06/16/32/car-1376190_960_720.jpg","description":"A beautiful car","price":"100000"},{"title":"Bike","imageUrl":"https://cdn.pixabay.com/photo/2015/05/29/19/18/bicycle-789648_960_720.jpg","description":"A nice bike","price":"500"}]
