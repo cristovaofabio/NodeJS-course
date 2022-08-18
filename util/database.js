@@ -1,14 +1,18 @@
 require('dotenv').config();
 
-const Sequelize = require('sequelize');
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        dialect: 'mysql',
-        host: process.env.DB_HOST
-    });
+const mongoConnect = (callback) => {
+    MongoClient
+        .connect(`mongodb+srv://cristovaofabio:${process.env.MONGO_PASSWORD}@cluster0.sio0ccb.mongodb.net/?retryWrites=true&w=majority`)
+        .then(client => {
+            console.log('Connected!');
+            callback(client);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
 
-module.exports = sequelize;
+module.exports = mongoConnect;
