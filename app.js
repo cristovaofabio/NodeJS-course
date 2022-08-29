@@ -16,6 +16,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./router/admin.js');
 const shopRoutes = require('./router/shop.js');
+const authRoutes = require('./router/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.pageNotFound);
 
