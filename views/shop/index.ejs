@@ -20,9 +20,11 @@
                             <h2 class="product__price">$<%= prods[i].price %></h2>
                             <p class="product__description"><%= prods[i].description %></p>
                         </div>
+                        <% if (isAuthenticated){ %>
                         <div class="card__actions">
                             <%- include('../includes/add-to-cart.ejs',{product: prods[i]})%>
                         </div>
+                        <% } %>
                     </header>
                 </article>
             <% } %>

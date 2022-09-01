@@ -22,7 +22,9 @@
                         </div>
                         <div class="card__actions">
                             <a href="/products/<%= prods[i]._id %>" class="btn">Details</a>
+                            <% if (isAuthenticated){ %>
                             <%- include('../includes/add-to-cart.ejs',{product: prods[i]})%>
+                            <% } %>
                         </div>
                     </header>
                 </article>
