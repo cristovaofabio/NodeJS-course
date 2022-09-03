@@ -7,7 +7,7 @@
         <%- include('../includes/navigation.ejs')%>
 
             <main>
-                <form class="login-form" action="/login" method="POST">
+                <form class="login-form" action="/signup" method="POST">
                     <div class="form-control">
                         <label for="email">E-mail</label>
                         <input type="email" name="email" id='email' value="" />
@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-control">
                         <label for="password">Confirm password</label>
-                        <input type="password" name="password" id='password' />
+                        <input type="password" name="confirmPassword" id='password' />
                     </div>
                     <button class="btn" type="submit">Signup</button>
                 </form>

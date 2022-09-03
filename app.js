@@ -57,18 +57,6 @@ app.use(errorController.pageNotFound);
 
 mongoose.connect(MONGODB_URI)
     .then(result => {
-        User.findOne().then(user => {
-            if (!user) {
-                const user = new User({
-                    username: 'Tony',
-                    email: 'tony@email.com',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        });
         console.log('Connected to database!');
         app.listen(3000);
     })
