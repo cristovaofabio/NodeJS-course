@@ -92,7 +92,7 @@ exports.postOrder = (req, res, next) => {
             });
             const order = new Order({
                 user: {
-                    name: req.user.username,
+                    email: req.user.email,
                     userId: req.user
                 },
                 products: products
@@ -100,7 +100,7 @@ exports.postOrder = (req, res, next) => {
             return order.save();
         })
         .then(result => {
-            return req.session.user.clearCart();
+            return req.user.clearCart();
         }).then(() => {
             res.redirect('/orders');
         })
