@@ -2,6 +2,7 @@ const express = require('express');
 const { check, body } = require('express-validator');
 
 const authController = require('../controllers/auth');
+const User = require('../models/user');
 
 const router = express.Router();
 
@@ -13,7 +14,14 @@ router.get('/reset/:token', authController.getNewPassword);
 router.post('/login', authController.postLogin);
 router.post('/signup',
     [
-        check('email').isEmail().withMessage('Please enter with a valid email.'),
+        check('email').isEmail().withMessage('Please enter with a valid email.').custom((value, { req }) => {
+            return User.findOne({ email: value })
+                .then(userDoc => {
+                    if (userDoc) {
+                        return Promise.reject('E-mail exists already!');
+                    }
+                });
+        }),
         body('password', 'Invalid password! Insert only numbers and text and at least 6 characters').isLength({ min: 6 }).isAlphanumeric(),
         body('confirmPassword').custom((value, { req }) => {
             if (value !== req.body.password) {
