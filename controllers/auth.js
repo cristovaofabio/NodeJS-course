@@ -50,7 +50,8 @@ exports.getSignup = (req, res, next) => {
             email: '',
             password: '',
             confirmPassword: ''
-        }
+        },
+        validationErrors: []
     });
 }
 
@@ -113,7 +114,8 @@ exports.postSignup = (req, res, next) => {
                     email: email,
                     password: password,
                     confirmPassword: confirmPassword
-                }
+                },
+                validationErrors: errors.array()
             });
     }
 
