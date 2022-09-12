@@ -13,8 +13,8 @@ router.get('/reset/:token', authController.getNewPassword);
 
 router.post('/login',
     [
-        body('email').isEmail().withMessage('Please enter with a valid email.'),
-        body('password', 'Invalid password! Insert only numbers and text and at least 6 characters').isLength({ min: 6 }).isAlphanumeric(),
+        body('email').isEmail().withMessage('Please enter with a valid email.').normalizeEmail(),
+        body('password', 'Invalid password! Insert only numbers and text and at least 6 characters').isLength({ min: 6 }).isAlphanumeric().trim(),
     ],
     authController.postLogin);
 router.post('/signup',
@@ -26,14 +26,14 @@ router.post('/signup',
                         return Promise.reject('E-mail exists already!');
                     }
                 });
-        }),
-        body('password', 'Invalid password! Insert only numbers and text and at least 6 characters').isLength({ min: 6 }).isAlphanumeric(),
+        }).normalizeEmail(),
+        body('password', 'Invalid password! Insert only numbers and text and at least 6 characters').isLength({ min: 6 }).isAlphanumeric().trim(),
         body('confirmPassword').custom((value, { req }) => {
             if (value !== req.body.password) {
                 throw new Error('Passwords have to match');
             }
             return true;
-        })
+        }).trim()
     ],
     authController.postSignup);
 router.post('/logout', authController.postLogout);
